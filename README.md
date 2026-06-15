@@ -90,6 +90,41 @@ In this exercise you will:
 
    * Run `./solutions/sample` and confirm it prints `Hello, PP7!`.
 6. **Explain** in comments or a short README how each stage transforms the code.
+   /*
+
+Kompilierungsphasen in C
+
+1. Präprozessierung (-E):
+
+   Fügt Header-Dateien ein und ersetzt Makros.
+
+   Ausgabe: sample.i
+
+2. Kompilierung (-S):
+
+   Übersetzt den C-Code in Assemblercode.
+
+   Ausgabe: sample.s
+
+3. Assemblierung (-c):
+
+   Wandelt den Assemblercode in Maschinencode um.
+
+   Ausgabe: sample.o
+
+4. Linken:
+
+   Verbindet die Objektdatei mit benötigten
+
+   Bibliotheken und erstellt das Programm.
+
+   Ausgabe: sample
+
+5. Ausführung:
+
+   Das Programm gibt "Hello, PP7!" aus.
+
+*/
 
 ---
 
@@ -131,6 +166,12 @@ In this exercise you will:
    vim -c ":%s/printf/debug_printf/g" -c ":wq" solutions/debug_sample.c
    ```
 7. **Explain** each tool’s approach to regex-based search and replace, and when you might prefer one over the others.
+
+`grep` wird verwendet, um mit regulären Ausdrücken nach Mustern in Dateien zu suchen.
+
+`sed` eignet sich zum automatischen Ersetzen von Text, während `awk` Daten filtern und formatiert ausgeben kann.
+
+Für manuelle und kontrollierte Änderungen ist Vim praktisch, während `sed` oder Vim im CLI-Modus besser für schnelle automatische Änderungen geeignet sind.
 
 ---
 
@@ -176,6 +217,12 @@ In this exercise you will:
    * The role of `extern` declarations.
    * Why separating compilation can speed up builds.
    * How manual linking differs from letting `gcc` handle all steps in one command.
+
+Die `extern`-Deklaration teilt dem Compiler mit, dass die Funktion `add()` in einer anderen Quelldatei definiert ist. Dadurch kann `main.c` die Funktion verwenden, obwohl ihr Code in `add.c` steht.
+
+Durch die getrennte Kompilierung müssen bei Änderungen nur die betroffenen Dateien neu kompiliert werden, was den Build-Prozess beschleunigt. Dies ist besonders bei größeren Projekten mit vielen Quelldateien hilfreich.
+
+Beim manuellen Linken werden die bereits kompilierten Objektdateien (`.o`) explizit zu einem Programm zusammengefügt. Führt man stattdessen `gcc add.c main.c -o add_example` aus, übernimmt GCC Kompilierung und Linken automatisch in einem einzigen Schritt.
 
 ---
 
